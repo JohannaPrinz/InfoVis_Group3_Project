@@ -65,14 +65,14 @@ function visualizeRace(data){
             .attr("transform", `translate(${margin.left}, ${margin.top})`);
 
     var xAxis = d3.scaleLinear()
-        .domain(d3.min(data.Kalenderwoche), d3.max(data.Kalenderwoche))
+        .domain(d3.extent(data, item => item.Kalenderwoche))
         .range([0, width]);
     svg.append("g")
         .attr("transform", `translate(0, ${height})`)
         .call(d3.axisBottom(xAxis));
 
     var yAxis =d3.scaleLinear()
-        .domain([0, d3.max(data.Desinfektionsmittel)])
+        .domain(d3.extent(data, item => item.Hefe))
         .range([height, 0])
     svg.append("g")
         .call(d3.axisRight(yAxis)); 
